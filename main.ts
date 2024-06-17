@@ -535,6 +535,11 @@ function home () {
     mySprite8.x = 80
     mySprite8.y = 16
 }
+/**
+ * usable functions for your custom programs: isApressed isBpressed notifaction isdarkmode password password-check.
+ * 
+ * math. how to use password check 1=right 0=wrong 2=password does not exist, or the password has a name of a OS setting. how to use password: true=password set false=OS setting. OS setting means that that setting is used by the OS. how to make custom programs: to create a program, make a new function like prog1 then put the code of the program in the new function which can use the functions that this says you can use. then put the code to run your custom program into the function called: execute. how to use the function math: the function works by input 1 1 1 which will add 1+1 and will return the output. hers the operation list 1=add 0=multiply 2= subtract 4=divide. also, any other function you should not use. you cannot use sprites 8-1 and one is mysprite just so you now. do not modify the OS unless this says you can modify that part of the OS. the notifaction function which you can use takes text and shows it as a notifaction also the notifaction will wait for other notifications to finish.
+ */
 // ask for password
 function askpassword () {
     pass2 = game.askForNumber("your password")
@@ -579,27 +584,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         press()
     }
 })
-/**
- * usable functions for your custom programs: isApressed isBpressed notifaction isdarkmode password password-check. 
- * 
- *   math. how to use password check 1=right 0=wrong 2=password does not exist, or the password has a name of a OS setting. how to use password: true=password set false=OS setting. OS setting means that that setting is used by the OS. how to make custom programs: to create a program, make a new function like prog1 then put the code of the program in the new function which can use the functions that this says you can use. then put the code to run your custom program into the function called: execute. how to use the function math: the function works by input 1 1 1 which will add 1+1 and will return the output. hers the operation list 1=add 0=multiply 2= subtract 4=divide. also, any other function you should not use. you cannot use sprites 8-1 and one is mysprite just so you now. do not modify the OS unless this says you can modify that part of the OS. the notifaction function which you can use takes text and shows it as a notifaction also the notifaction will wait for other notifications to finish.
- */
-// OS-password-ckeck
-function passwordcheck (text: string, num: number) {
-    if (!(text == "password" || (text == "w" || (text == "pp" || text == "wp")))) {
-        if (blockSettings.exists(text)) {
-            if (num == blockSettings.readNumber(text)) {
-                return 1
-            } else {
-                return 0
-            }
-        } else {
-            return 2
-        }
-    } else {
-        return 2
-    }
-}
 // OS-create-password
 function password (text: string, num: number) {
     if (!(text == "password" || (text == "w" || (text == "pp" || text == "wp")))) {
@@ -635,6 +619,22 @@ function isApressed () {
         return true
     } else {
         return false
+    }
+}
+// OS-password-ckeck
+function passwordcheck (text: string, num: number) {
+    if (!(text == "password" || (text == "w" || (text == "pp" || text == "wp")))) {
+        if (blockSettings.exists(text)) {
+            if (num == blockSettings.readNumber(text)) {
+                return 1
+            } else {
+                return 0
+            }
+        } else {
+            return 2
+        }
+    } else {
+        return 2
     }
 }
 // + * - / numbers
@@ -696,24 +696,6 @@ function mouse () {
     controller.moveSprite(mySprite)
     mySprite.setStayInScreen(true)
 }
-controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (utility) {
-        if (game.ask("settings")) {
-            settings2()
-        } else {
-            if (game.ask("stuck")) {
-                game.showLongText("reset the OS or refresh the page", DialogLayout.Bottom)
-            } else if (game.ask("how to use math")) {
-                game.showLongText("first open " + "the icon which looks like a lot of colored squares." + "  then press B 3 times to get to use the math A to confirm B to go to next.", DialogLayout.Bottom)
-            } else if (game.ask("how to see version")) {
-                game.showLongText("first open " + "the icon which looks like a lot of colored squares." + "then press B twice then press A once and you will see the version.", DialogLayout.Bottom)
-            }
-        }
-    }
-    if (game.ask("settings")) {
-        settings2()
-    }
-})
 function backrounddark_or_light_mode () {
     // persistint dark or light mode
     if (blockSettings.readNumber("darkmode") == 1) {
@@ -735,6 +717,24 @@ function backrounddark_or_light_mode () {
         w4 = true
     }
 }
+controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (utility) {
+        if (game.ask("settings")) {
+            settings2()
+        } else {
+            if (game.ask("stuck")) {
+                game.showLongText("reset the OS or refresh the page", DialogLayout.Bottom)
+            } else if (game.ask("how to use math")) {
+                game.showLongText("first open " + "the icon which looks like a lot of colored squares." + "  then press B 3 times to get to use the math A to confirm B to go to next.", DialogLayout.Bottom)
+            } else if (game.ask("how to see version")) {
+                game.showLongText("first open " + "the icon which looks like a lot of colored squares." + "then press B twice then press A once and you will see the version.", DialogLayout.Bottom)
+            }
+        }
+    }
+    if (game.ask("settings")) {
+        settings2()
+    }
+})
 function exucute () {
 	
 }
