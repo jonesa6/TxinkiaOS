@@ -1,5 +1,5 @@
 {
-    "name": "makecode OS [alpha]",
+    "name": "TxinkiaOS [alpha]",
     "version": "1.0.0",
     "description": "",
     "dependencies": {
@@ -30,5 +30,5 @@
     "supportedTargets": [
         "arcade"
     ],
-    "preferredEditor": "tsprj"
+    "preferredEditor": "pyprj"
 }
